@@ -21,6 +21,7 @@ public class enterBasket : MonoBehaviour {
 			gameController.AddScore(1);
 		} else if (collision.gameObject.tag == "bottom") {
 			Destroy (this.gameObject);
+			gameController.KillPlayer();
 		}
 
 	}

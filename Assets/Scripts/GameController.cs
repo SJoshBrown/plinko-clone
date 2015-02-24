@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 	public int gameScore = 0;
+	public int playerLives = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -21,5 +22,9 @@ public class GameController : MonoBehaviour {
 	public void AddScore ( int newScore ) {
 		gameScore += newScore;
 
+	}
+
+	public void KillPlayer () {
+		playerLives -= 1;
 	}
 }
