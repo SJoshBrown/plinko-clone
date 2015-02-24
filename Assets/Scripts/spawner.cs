@@ -10,13 +10,11 @@ public class spawner : MonoBehaviour {
 	private float changeFromInitialRate = 0.0f;
 	public float spawnTime;
 	private float lastCreated = Time.time;
-	private float now = Time.time;
+	private float now;
 	public float minimumInterval = 0.0f;
 	private Transform placeholderPosition;
 
-	//Mathf.Clamp(changeFromInitialRate, 0.0f, 2.0f);
 	void SpawnObject() {
-		//Instantiate (placeholderObjectToSpawn, new Vector3 (xpositions[Random.Range (0, xpositions.Length)], 3.6f, 0), Quaternion.identity);
 
 		GameObject existingPlaceholder = GameObject.FindWithTag ("ballPlaceholder");
 		placeholderPosition = existingPlaceholder.transform;

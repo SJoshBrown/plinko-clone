@@ -19,7 +19,6 @@ public class enterBasket : MonoBehaviour {
 		if (collision.gameObject.tag == "Glove") {
 			Destroy (this.gameObject);
 			gameController.AddScore(1);
-			Debug.Log (gameController.gameScore);
 		} else if (collision.gameObject.tag == "bottom") {
 			Destroy (this.gameObject);
 		}
