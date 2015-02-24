@@ -9,7 +9,7 @@ public class spawner : MonoBehaviour {
 	public float initialRate = 3.0f;
 	private float changeFromInitialRate = 0.0f;
 	public float spawnTime;
-	private float lastCreated = Time.time;
+	private float lastCreated;
 	private float now;
 	public float minimumInterval = 0.0f;
 	private Transform placeholderPosition;
