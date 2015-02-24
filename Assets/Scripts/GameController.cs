@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameScore = 0;
+		DontDestroyOnLoad (this);
 	}
 		
 	// Update is called once per frame
@@ -26,5 +27,6 @@ public class GameController : MonoBehaviour {
 
 	public void KillPlayer () {
 		playerLives -= 1;
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }
