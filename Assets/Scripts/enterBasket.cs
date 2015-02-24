@@ -16,7 +16,6 @@ public class enterBasket : MonoBehaviour {
 	
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		//Debug.Log ("Collision detected", collision.gameObject);
 		if (collision.gameObject.tag == "Glove") {
 			Destroy (this.gameObject);
 			gameController.AddScore(1);
@@ -27,8 +26,4 @@ public class enterBasket : MonoBehaviour {
 
 	}
 
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
