@@ -22,12 +22,12 @@ public class spawner : MonoBehaviour {
 		placeholderPosition = existingPlaceholder.transform;
 		Instantiate (objectToSpawn, new Vector3 (placeholderPosition.position.x, placeholderPosition.position.y, placeholderPosition.position.z), Quaternion.identity);
 		Destroy (existingPlaceholder);
-		Instantiate (placeholderObjectToSpawn, new Vector3 (xpositions[Random.Range (0, xpositions.Length)], 3.6f, 0), Quaternion.identity);
+		Instantiate (placeholderObjectToSpawn, new Vector3 (xpositions[Random.Range (0, xpositions.Length)], 3.65f, 0), Quaternion.identity);
 	}
 
 	// Use this for initialization
 	void Start () {
-		Instantiate (placeholderObjectToSpawn, new Vector3 (xpositions[Random.Range (0, xpositions.Length)], 3.6f, 0), Quaternion.identity);
+		Instantiate (placeholderObjectToSpawn, new Vector3 (xpositions[Random.Range (0, xpositions.Length)], 3.65f, 0), Quaternion.identity);
 
 	}
 	
@@ -42,6 +42,6 @@ public class spawner : MonoBehaviour {
 			this.SpawnObject ();
 			this.lastCreated = now;
 		}
-		changeFromInitialRate += Time.deltaTime/150;
+		changeFromInitialRate += Time.deltaTime/75;
 	}
 }
