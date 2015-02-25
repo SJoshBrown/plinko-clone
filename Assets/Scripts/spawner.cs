@@ -26,7 +26,7 @@ public class spawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Instantiate (placeholderObjectToSpawn, new Vector3 (xpositions[Random.Range (0, xpositions.Length)], 3.65f, 0), Quaternion.identity);
-
+		this.lastCreated = Time.time;
 	}
 	
 
