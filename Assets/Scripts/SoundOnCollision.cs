@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(AudioSource))]
+//[RequireComponent(typeof(AudioSource))]
 public class SoundOnCollision : MonoBehaviour {
 
 	public float volume = 1.0f;
@@ -9,6 +9,6 @@ public class SoundOnCollision : MonoBehaviour {
 
 
 	void OnCollisionEnter2D() {
-		audio.PlayOneShot (soundToPlay , volume);
+		AudioSource.PlayClipAtPoint (soundToPlay ,transform.position, volume);
 	}
 }
