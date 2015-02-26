@@ -1,20 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 	public int gameScore = 0;
 	public int playerLives = 3;
-	//private static created = false;
+	private GameObject textGameObject;
+	private Text scoreText;
+
 	// Use this for initialization
 	void Start () {
-		//if (created)
+
 		gameScore = 0;
 		DontDestroyOnLoad (this);
-		
+
+		textGameObject = GameObject.FindWithTag("scoreText");
+		scoreText = textGameObject.GetComponent<Text> ();
 	}
 		
 	// Update is called once per frame
 	void Update () {
+		this.scoreText.text = "Score:" + gameScore;
 
 	}
 
