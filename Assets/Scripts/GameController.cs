@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour {
 	public int playerLives = 3;
 	private GameObject textGameObject;
 	private Text scoreText;
-
+	public GameObject spawnerObject;
 	// Use this for initialization
 	void Start () {
 
@@ -35,18 +35,21 @@ public class GameController : MonoBehaviour {
 
 	public void KillPlayer () {
 		playerLives -= 1;
-		Time.timeScale = 0.0f;
-		float resumeTime = Time.realtimeSinceStartup + 2;
-		while (Time.realtimeSinceStartup < resumeTime)
-		{
-		}
-		Invoke("WaitToRestart", 0.0f);
+		DestroyAllGameObjectsWithTag ("ball");
+		DestroyAllGameObjectsWithTag ("ballPlaceholder");
+		DestroyAllGameObjectsWithTag ("spawner");
+		Instantiate (spawnerObject, new Vector3 (0.0f, 0.0f, 0.0f), Quaternion.identity);
 
 	}
 
-	void WaitToRestart() {
-        Application.LoadLevel(Application.loadedLevel);
-    }
+	void DestroyAllGameObjectsWithTag(string tag){
+		GameObject[] gameObjects = GameObject.FindGameObjectsWithTag (tag);
+		foreach (GameObject obj in gameObjects) {
+			GameObject.Destroy (obj);
+		}
+	}
+
+
 }
 
 
