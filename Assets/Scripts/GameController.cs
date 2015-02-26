@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-	public int gameScore = 0;
+	private int gameScore = 0;
 	public int playerLives = 3;
 	private GameObject textGameObject;
 	private Text scoreText;
@@ -14,12 +14,10 @@ public class GameController : MonoBehaviour {
 	private GameObject gameOverUI;
 	// Use this for initialization
 	void Start () {
-
 		gameOverUI = GameObject.FindGameObjectWithTag("gameOverUI");
 		gameOverUI.SetActive(false);
 
 		gameScore = 0;
-		//DontDestroyOnLoad (this);
 		playerSprites[0] = GameObject.FindGameObjectWithTag("playerSprite1");
 		playerSprites[1] = GameObject.FindGameObjectWithTag("playerSprite2");
 		playerSprites[2] = GameObject.FindGameObjectWithTag("playerSprite3");
@@ -30,16 +28,10 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		this.scoreText.text = "Score:" + gameScore;
-
-	}
-
-	void SetScore() {
-
 	}
 
 	public void AddScore ( int newScore ) {
 		gameScore += newScore;
-
 	}
 
 	public void KillPlayer () {
