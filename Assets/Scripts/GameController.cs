@@ -8,12 +8,15 @@ public class GameController : MonoBehaviour {
 	private GameObject textGameObject;
 	private Text scoreText;
 	public GameObject spawnerObject;
+	private GameObject[] playerSprites;
+	private Vector3 spritePosition;
+	public GameObject xObject;
 	// Use this for initialization
 	void Start () {
 
 		gameScore = 0;
 		DontDestroyOnLoad (this);
-
+		playerSprites = GameObject.FindGameObjectsWithTag ("playerSprite");
 		textGameObject = GameObject.FindWithTag("scoreText");
 		scoreText = textGameObject.GetComponent<Text> ();
 	}
@@ -39,7 +42,10 @@ public class GameController : MonoBehaviour {
 		DestroyAllGameObjectsWithTag ("ballPlaceholder");
 		DestroyAllGameObjectsWithTag ("spawner");
 		Instantiate (spawnerObject, new Vector3 (0.0f, 0.0f, 0.0f), Quaternion.identity);
-
+		spritePosition = playerSprites [playerLives].transform.position;
+		Instantiate (xObject, spritePosition, Quaternion.identity);
+		if (playerLives <= 0)
+			EndGame ();
 	}
 
 	void DestroyAllGameObjectsWithTag(string tag){
@@ -49,7 +55,9 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-
+	void EndGame(){
+		Time.timeScale = 0.0f;
+	}
 }
 
 
