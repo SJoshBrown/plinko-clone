@@ -8,15 +8,21 @@ public class GameController : MonoBehaviour {
 	private GameObject textGameObject;
 	private Text scoreText;
 	public GameObject spawnerObject;
-	private GameObject[] playerSprites;
+	private GameObject[] playerSprites = new GameObject[9];
 	private Vector3 spritePosition;
 	public GameObject xObject;
+	private GameObject gameOverUI;
 	// Use this for initialization
 	void Start () {
 
+		gameOverUI = GameObject.FindGameObjectWithTag("gameOverUI");
+		gameOverUI.SetActive(false);
+
 		gameScore = 0;
-		DontDestroyOnLoad (this);
-		playerSprites = GameObject.FindGameObjectsWithTag ("playerSprite");
+		//DontDestroyOnLoad (this);
+		playerSprites[0] = GameObject.FindGameObjectWithTag("playerSprite1");
+		playerSprites[1] = GameObject.FindGameObjectWithTag("playerSprite2");
+		playerSprites[2] = GameObject.FindGameObjectWithTag("playerSprite3");
 		textGameObject = GameObject.FindWithTag("scoreText");
 		scoreText = textGameObject.GetComponent<Text> ();
 	}
@@ -57,6 +63,12 @@ public class GameController : MonoBehaviour {
 
 	void EndGame(){
 		Time.timeScale = 0.0f;
+		gameOverUI.SetActive(true);
+	}
+
+	public void Restart(){
+		Application.LoadLevel(Application.loadedLevel);
+		Time.timeScale = 1.0f;
 	}
 }
 
