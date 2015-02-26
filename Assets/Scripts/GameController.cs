@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour {
 		DestroyAllGameObjectsWithTag ("ballPlaceholder");
 		DestroyAllGameObjectsWithTag ("spawner");
 		Instantiate (spawnerObject, new Vector3 (0.0f, 0.0f, 0.0f), Quaternion.identity);
-		spritePosition = playerSprites [playerLives].transform.position;
+		spritePosition = playerSprites [2 - playerLives].transform.position;
 		Instantiate (xObject, spritePosition, Quaternion.identity);
 		if (playerLives <= 0)
 			EndGame ();
