@@ -14,7 +14,6 @@ public class BallCollisionBehavior : MonoBehaviour {
 		}
 	}
 	
-
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.tag == "Glove") {
 			Destroy (this.gameObject);
