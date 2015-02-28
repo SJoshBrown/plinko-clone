@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
 	private GameObject gameOverUI;
 	// Use this for initialization
 	void Start () {
+		Time.timeScale = 1.0f;
 		Instantiate (spawnerObject, new Vector3 (0.0f, 0.0f, 0.0f), Quaternion.identity);
 
 		gameOverUI = GameObject.FindGameObjectWithTag("gameOverUI");
