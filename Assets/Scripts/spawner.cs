@@ -16,6 +16,7 @@ public class spawner : MonoBehaviour {
 	public float minimumSpawnTime = 0.0f;
 	public float timeDecreaseAmount = 0.0f;
 	public int increaseInterval = 10;
+	public AudioClip bloopSound;
 
 	// Use this for initialization
 	void Start () {
@@ -48,11 +49,16 @@ public class spawner : MonoBehaviour {
 		GameObject existingPlaceholder = GameObject.FindWithTag ("ballPlaceholder");
 		placeholderPosition = existingPlaceholder.transform;
 		Instantiate (objectToSpawn, new Vector3 (placeholderPosition.position.x, placeholderPosition.position.y, placeholderPosition.position.z), Quaternion.identity);
+		PlayBloop ();
 		Destroy (existingPlaceholder);
 		Instantiate (placeholderObjectToSpawn, new Vector3 (xpositions[Random.Range (0, xpositions.Length)], 3.65f, 0), Quaternion.identity);
 		ballsDropped += 1;
 		if (ballsDropped % increaseInterval == 0) {
 			spawnTime -= timeDecreaseAmount;
 		}
+	}
+
+	void PlayBloop() {
+		AudioSource.PlayClipAtPoint (bloopSound ,transform.position, 1.0f);
 	}
 }

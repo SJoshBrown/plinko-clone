@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour {
 	private Vector3 spritePosition;
 	public GameObject xObject;
 	private GameObject gameOverUI;
+	public AudioClip killPlayerSound;
+	public AudioClip endGameSound;
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1.0f;
@@ -45,8 +47,12 @@ public class GameController : MonoBehaviour {
 		Instantiate (spawnerObject, new Vector3 (0.0f, 0.0f, 0.0f), Quaternion.identity);
 		spritePosition = playerSprites [2 - playerLives].transform.position;
 		Instantiate (xObject, spritePosition, Quaternion.identity);
-		if (playerLives <= 0)
+		if (playerLives <= 0) {
+			AudioSource.PlayClipAtPoint (endGameSound, transform.position, 1.0f);
 			EndGame ();
+		}
+		else
+			AudioSource.PlayClipAtPoint (killPlayerSound ,transform.position, 1.0f);
 	}
 
 	void DestroyAllGameObjectsWithTag(string tag){
@@ -64,6 +70,10 @@ public class GameController : MonoBehaviour {
 	public void Restart(){
 		Application.LoadLevel(Application.loadedLevel);
 		Time.timeScale = 1.0f;
+	}
+
+	public void QuitGame(){
+		Application.Quit ();
 	}
 }
 
