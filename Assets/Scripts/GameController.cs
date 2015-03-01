@@ -3,17 +3,19 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-	private int gameScore = 0;
 	public int playerLives = 3;
-	private GameObject textGameObject;
-	private Text scoreText;
 	public GameObject spawnerObject;
-	private GameObject[] playerSprites = new GameObject[9];
-	private Vector3 spritePosition;
 	public GameObject xObject;
-	private GameObject gameOverUI;
 	public AudioClip killPlayerSound;
 	public AudioClip endGameSound;
+
+	private int gameScore = 0;
+	private GameObject textGameObject;
+	private Text scoreText;
+	private GameObject[] playerSprites = new GameObject[9];
+	private Vector3 spritePosition;
+	private GameObject gameOverUI;
+
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1.0f;
