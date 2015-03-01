@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 	public GameObject xObject;
 	public AudioClip killPlayerSound;
 	public AudioClip endGameSound;
+	public float volume;
 
 	private int gameScore = 0;
 	private GameObject textGameObject;
@@ -50,11 +51,11 @@ public class GameController : MonoBehaviour {
 		spritePosition = playerSprites [2 - playerLives].transform.position;
 		Instantiate (xObject, spritePosition, Quaternion.identity);
 		if (playerLives <= 0) {
-			AudioSource.PlayClipAtPoint (endGameSound, transform.position, 1.0f);
+			AudioSource.PlayClipAtPoint (endGameSound, transform.position, volume);
 			EndGame ();
 		}
 		else
-			AudioSource.PlayClipAtPoint (killPlayerSound ,transform.position, 1.0f);
+			AudioSource.PlayClipAtPoint (killPlayerSound ,transform.position, volume);
 	}
 
 	void DestroyAllGameObjectsWithTag(string tag){
