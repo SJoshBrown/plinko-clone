@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
-		this.scoreText.text = "Score:" + gameScore;
+		scoreText.text = "Score:" + gameScore;
 	}
 
 	public void AddScore ( int newScore ) {
