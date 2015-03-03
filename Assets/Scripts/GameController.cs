@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
 	private int gameScore = 0;
 	private GameObject textGameObject;
 	private Text scoreText;
-	private GameObject[] playerSprites = new GameObject[9];
+	private GameObject[] playerSprites = new GameObject[3];
 	private Vector3 spritePosition;
 	private GameObject gameOverUI;
 
@@ -44,11 +44,9 @@ public class GameController : MonoBehaviour {
 
 	public void KillPlayer () {
 		playerLives -= 1;
-		DestroyAllGameObjectsWithTag ("ball");
-		DestroyAllGameObjectsWithTag ("ballPlaceholder");
-		DestroyAllGameObjectsWithTag ("spawner");
+		DestroyAllGameObjectsWithTag (new string[] {"ball","ballPlaceholder","spawner"});
 		Instantiate (spawnerObject, new Vector3 (0.0f, 0.0f, 0.0f), Quaternion.identity);
-		spritePosition = playerSprites [2 - playerLives].transform.position;
+		spritePosition = playerSprites [playerLives].transform.position;
 		Instantiate (xObject, spritePosition, Quaternion.identity);
 		if (playerLives <= 0) {
 			AudioSource.PlayClipAtPoint (endGameSound, transform.position, volume);
@@ -58,10 +56,14 @@ public class GameController : MonoBehaviour {
 			AudioSource.PlayClipAtPoint (killPlayerSound ,transform.position, volume);
 	}
 
-	void DestroyAllGameObjectsWithTag(string tag){
-		GameObject[] gameObjects = GameObject.FindGameObjectsWithTag (tag);
-		foreach (GameObject obj in gameObjects) {
-			GameObject.Destroy (obj);
+	void DestroyAllGameObjectsWithTag(string[] tags){
+		foreach (string tag in tags)
+		{
+			GameObject[] gameObjects = GameObject.FindGameObjectsWithTag (tag);
+			foreach (GameObject obj in gameObjects) 
+			{
+				GameObject.Destroy (obj);
+			}
 		}
 	}
 
