@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour {
 	public float volume;
 
 	private int gameScore = 0;
-	private GameObject textGameObject;
 	private Text scoreText;
 	private GameObject[] playerSprites = new GameObject[3];
 	private Vector3 spritePosition;
@@ -20,17 +19,19 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1.0f;
+
 		Instantiate (spawnerObject, new Vector3 (0.0f, 0.0f, 0.0f), Quaternion.identity);
 
 		gameOverUI = GameObject.FindGameObjectWithTag("gameOverUI");
 		gameOverUI.SetActive(false);
 
 		gameScore = 0;
+
 		playerSprites[0] = GameObject.FindGameObjectWithTag("playerSprite1");
 		playerSprites[1] = GameObject.FindGameObjectWithTag("playerSprite2");
 		playerSprites[2] = GameObject.FindGameObjectWithTag("playerSprite3");
-		textGameObject = GameObject.FindWithTag("scoreText");
-		scoreText = textGameObject.GetComponent<Text> ();
+
+		scoreText = GameObject.FindWithTag("scoreText").GetComponent<Text> ();
 	}
 		
 	// Update is called once per frame

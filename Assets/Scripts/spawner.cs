@@ -23,7 +23,7 @@ public class spawner : MonoBehaviour {
 		numberSpawned += 1;
 
 		//Set the initial time before dropping the first ball to 1 second regardless of initialRate
-		this.lastCreated = Time.time - (initialRate - 1.0f);
+		lastCreated = Time.time - (initialRate - 1.0f);
 		
 		spawnTime = initialRate;
 	}
@@ -34,15 +34,14 @@ public class spawner : MonoBehaviour {
 		now = Time.time;
 
 		//Spawn new ball if enough time has passed since one was last created
-		if (now - this.lastCreated > Mathf.Clamp(this.spawnTime, minimumSpawnTime, initialRate)) {
-			this.SpawnObject ();
-			this.lastCreated = now;
+		if (now - lastCreated > Mathf.Clamp(spawnTime, minimumSpawnTime, initialRate)) {
+			SpawnObject ();
+			lastCreated = now;
 		}
 	}
 
 	//Destroy placeholder and create object in its place
 	//Create new placeholder at a random location
-	//Increase ballsDropped by one
 	//Decrease spawn rate if interval is met
 	void SpawnObject() {
 		GameObject existingPlaceholder = GameObject.FindWithTag ("ballPlaceholder");
