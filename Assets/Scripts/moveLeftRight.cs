@@ -13,9 +13,9 @@ public class moveLeftRight : MonoBehaviour {
 		transform.Translate(Input.GetAxis("Horizontal") * speed * Time.deltaTime,0,0);
 		
 		transform.position = new Vector3(
-        Mathf.Clamp(transform.position.x, xMin, xMax),
-        transform.position.y,
-        transform.position.z
-    );
+        	Mathf.Clamp(transform.position.x, xMin, xMax),
+        	transform.position.y,
+        	transform.position.z
+  			);
 	}
 }

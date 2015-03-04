@@ -2,11 +2,10 @@
 using System.Collections;
 
 public class spawner : MonoBehaviour {
-
-	private Transform placeholderPosition;
+	
 	private float lastCreated;
 	private float now;
-	private int ballsDropped = 0;
+	private int numberSpawned = 0;
 	private float spawnTime;
 
 	public float[] xpositions = new float[9];
@@ -21,7 +20,7 @@ public class spawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Instantiate (placeholderObjectToSpawn, new Vector3 (xpositions[Random.Range (0, xpositions.Length)], 3.65f, 0), Quaternion.identity);
-		ballsDropped += 1;
+		numberSpawned += 1;
 
 		//Set the initial time before dropping the first ball to 1 second regardless of initialRate
 		this.lastCreated = Time.time - (initialRate - 1.0f);
@@ -47,13 +46,12 @@ public class spawner : MonoBehaviour {
 	//Decrease spawn rate if interval is met
 	void SpawnObject() {
 		GameObject existingPlaceholder = GameObject.FindWithTag ("ballPlaceholder");
-		placeholderPosition = existingPlaceholder.transform;
-		Instantiate (objectToSpawn, new Vector3 (placeholderPosition.position.x, placeholderPosition.position.y, placeholderPosition.position.z), Quaternion.identity);
+		Instantiate (objectToSpawn, new Vector3 (existingPlaceholder.transform.position.x, existingPlaceholder.transform.position.y, existingPlaceholder.transform.position.z), Quaternion.identity);
 		PlayBloop ();
 		Destroy (existingPlaceholder);
 		Instantiate (placeholderObjectToSpawn, new Vector3 (xpositions[Random.Range (0, xpositions.Length)], 3.65f, 0), Quaternion.identity);
-		ballsDropped += 1;
-		if (ballsDropped % increaseInterval == 0) {
+		numberSpawned += 1;
+		if (numberSpawned % increaseInterval == 0) {
 			spawnTime -= timeDecreaseAmount;
 		}
 	}
